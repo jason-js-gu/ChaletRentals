@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+
+html,body{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+	overflow: auto;
+	height: 100%;
+}
+
+#container-wrapper{	
+	display: flex;	
+	flex-direction: column;
+	height: 100% !important;
+}
+
+
+.section-main{
+	width: 100%;	
+}
+
+.div-form{
+	padding-top: 4rem;
+}
+
+.div-form form{
+	width: 90%;
+	max-width: 680px;
+}
+
+.div-footer{
+	width: 100%;
+	background-color: #333;
+	color: #fff;  
+	padding: 1.5rem 0;
+}
+
+
+.cr01{
+	flex-shrink: 0;	
+}
+
+.cr02{
+	flex-grow: 1;
+}
