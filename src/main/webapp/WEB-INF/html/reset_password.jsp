@@ -16,19 +16,17 @@
 				<%@ include file="nav.jsp"%>
 				<%@ include file="message.jsp"%>
 				<div class="div-form">
-					<form class="shadow m-auto p-3 bg-body-tertiary rounded">
-						<div class="mb-3">
-							<label for="usernameInput" class="form-label">Email</label> <input
-								type="email" class="form-control" id="usernameInput">
+					<form action="new_password" method="post" onsubmit="return validate()"
+					class="shadow m-auto p-3 bg-body-tertiary rounded">
+						<div class="mb-1">
+							<label for="pwdInput" class="form-label">Enter new password</label>
+							<input type="password" class="form-control" id="pwdInput">
 						</div>
 						<div class="mb-1">
-							<label for="pwdInput" class="form-label">Password</label> <input
-								type="password" class="form-control" id="pwdInput">
+							<label for="pwdInput1" class="form-label">Confirm new password</label>
+							<input type="password1" class="form-control" id="pwdInput1">
 						</div>
-						<div class="mb-3 text-end">
-							<p><a href="/reset-password">Forgot your password?</a></p>
-						</div>
-						<button class="btn btn-primary">Login</button>
+						<button class="btn btn-primary">Reset</button>
 					</form>
 				</div>
 			</div>
@@ -37,6 +35,22 @@
 		<%@ include file="footer.jsp"%>
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+	function validate(){
+		var pwd = document.getElementById("password");
+		var pwd1 = document.getElementById("password1");
+		if(pwd==="" || pwd1===""){
+			alert("Password is required!");
+			return false;
+		}
+		if(pwd != pwd1){
+			alert("Two passwords do not match!");
+			return false;
+		}
+		return true;
+	}
+</script>
+
 </body>
 </html>
-

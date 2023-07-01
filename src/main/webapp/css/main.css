@@ -24,7 +24,7 @@ html,body{
 	padding-top: 4rem;
 }
 
-.div-form form{
+.div-form form, .div-dim{
 	width: 90%;
 	max-width: 680px;
 }

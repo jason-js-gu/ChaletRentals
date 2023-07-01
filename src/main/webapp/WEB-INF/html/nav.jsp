@@ -1,3 +1,6 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+
 <nav class="navbar p-3 navbar-expand-lg bg-body-tertiary">
 
 	<a class="navbar-brand text-font" href="/home"> <img
@@ -18,10 +21,21 @@
 
 			<li class="nav-item"><a class="nav-link" href="/reservation">Reservation</a>
 			</li>
+			<c:if test="${request.getSession().getAttribute('role').title == 'admin' }">
+				<li class="nav-item"><a class="nav-link" href="/users">Users</a>
+			</c:if>
 		</ul>
 		<div class="text-right">
-			<span class="text-deco"><a href="/login">login</a></span>&nbsp;|&nbsp;
+			<c:if test="${request.getSession().getAttribute('user') != null}">		
+			<span class="text-deco">welcome, <c:out value="${request.getSession().getAttribute('user').username}" /></span>
+			&nbsp;|&nbsp;
+			<span class="text-deco"><a href="/logout">logout</a></span>
+			</c:if>
+			<c:if test="${request.getSession().getAttribute('user') == null}">		
+			<span class="text-deco"><a href="/login">login</a></span>			
+			&nbsp;|&nbsp;
 			<span class="text-deco"><a href="/register">register</a></span>
+			</c:if>
 		</div>
 	</div>
 

@@ -7,18 +7,24 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
-	private boolean isChaletOwner;
-	private boolean isAdmin;
+	private boolean isChaletOwner = false;
+	private String telephone;
 	
-	public User(UUID userID, String username, 
-			String password, String email,
-			boolean isChaletOwner, boolean isAdmin) {		
-		this.userID = userID;
+	public User() {		
+		this.userID = null;
+		this.username = null;
+		this.password = null;
+		this.email = null;
+		this.telephone = null;
+	}
+	
+	public User(String username, 
+			String password, String email, String telephone) {		
+		this.userID = UUID.randomUUID();
 		this.username = username;
 		this.password = password;
-		this.email = email;	
-		this.isChaletOwner = isChaletOwner;
-		this.isAdmin = isAdmin;
+		this.email = email;
+		this.telephone = telephone;
 	}
 
 	public UUID getUserID() {
@@ -61,11 +67,11 @@ public class User {
 		this.isChaletOwner = isChaletOwner;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
+	public String getTelephone() {
+		return telephone;
 	}
 
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 }

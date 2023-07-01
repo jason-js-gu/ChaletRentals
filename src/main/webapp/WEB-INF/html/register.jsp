@@ -16,25 +16,25 @@
 				<div class="div-form">
 					<form class="shadow m-auto p-3 bg-body-tertiary rounded">
 						<div class="mb-3">
-							<label for="usernameInput" class="form-label">Username</label> <input
-								type="text" class="form-control" id="usernameInput">
+							<label for="usernameInput" class="form-label">Username</label> 
+							<input type="text" name="username" class="form-control" id="usernameInput">
 						</div>
 						<div class="mb-3">
-							<label for="pwdInput" class="form-label">Password</label> <input
-								type="password" class="form-control" id="pwdInput">
+							<label for="pwdInput" class="form-label">Password</label> 
+							<input type="password" name="password" class="form-control" id="pwdInput">
 						</div>
 						<div class="mb-3">
 							<label for="emailInput" class="form-label">Email address</label>
-							<input type="email" class="form-control" id="emailInput"
+							<input type="email" name="email" class="form-control" id="emailInput"
 								placeholder="name@example.com">
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="chx">
+							<input class="form-check-input" type="checkbox" name="isowner" value="" id="chx">
 							<label class="form-check-label" for="chx"> Chalet Owner </label>
 						</div>
 						<div class="mb-3 mt-2 d-none" id="div_tel">
-							<label for="telephone" class="form-label">Telephone</label> <input
-								type="text" id="telephone" class="form-control">
+							<label for="telephone" class="form-label">Telephone</label>
+							<input type="text" name="telephone" id="telephone" class="form-control">
 						</div>
 						<button class="btn btn-primary mt-3">Register</button>
 					</form>

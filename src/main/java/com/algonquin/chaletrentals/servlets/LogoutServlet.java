@@ -7,30 +7,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.algonquin.chaletrentals.dao.ChaletDao;
-
 /**
- * Servlet implementation class ChaletServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet(name="chaletRentals", urlPatterns= {"/home"})
-public class ChaletServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ChaletDao chaletDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChaletServlet() {
-        chaletDao = new ChaletDao();
+    public LogoutServlet() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("WEB-INF/html/home.jsp").forward(request, response);
+		request.getSession().removeAttribute("user");
+		request.getSession().invalidate();
+		//request.getRequestDispatcher("WEB-INF/logout.jsp").forward(request, response);
+		response.sendRedirect("/home");
 	}
 
 	/**

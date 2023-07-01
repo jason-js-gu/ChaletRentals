@@ -125,6 +125,7 @@
 			<div class="cr01 cr02"></div>
 			<%@ include file="footer.jsp"%>
 		</div>
+		</div>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
