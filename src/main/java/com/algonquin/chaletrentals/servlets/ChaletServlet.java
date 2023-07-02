@@ -12,7 +12,7 @@ import com.algonquin.chaletrentals.dao.ChaletDao;
 /**
  * Servlet implementation class ChaletServlet
  */
-@WebServlet(name="chaletRentals", urlPatterns= {"/home"})
+@WebServlet("/home")
 public class ChaletServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ChaletDao chaletDao;
@@ -28,17 +28,7 @@ public class ChaletServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("WEB-INF/html/home.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

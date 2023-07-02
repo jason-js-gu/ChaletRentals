@@ -10,6 +10,7 @@
 <%@ include file="head.jsp"%>
 </head>
 <body>
+<h1><c:out value="${pageContext.request.contextPath}" /></h1>
 	<div id="container-wrapper">
 		<div class="cr01 section-main">
 		<div class="container">

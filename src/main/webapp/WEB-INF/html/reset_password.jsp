@@ -16,15 +16,15 @@
 				<%@ include file="nav.jsp"%>
 				<%@ include file="message.jsp"%>
 				<div class="div-form">
-					<form action="new_password" method="post" onsubmit="return validate()"
+					<form action="/new-password" method="post" onsubmit="return validate()"
 					class="shadow m-auto p-3 bg-body-tertiary rounded">
-						<div class="mb-1">
+						<div class="mb-3">
 							<label for="pwdInput" class="form-label">Enter new password</label>
-							<input type="password" class="form-control" id="pwdInput">
+							<input type="password" name="pwd" class="form-control" id="pwdInput">
 						</div>
-						<div class="mb-1">
+						<div class="mb-3">
 							<label for="pwdInput1" class="form-label">Confirm new password</label>
-							<input type="password1" class="form-control" id="pwdInput1">
+							<input type="password" name="pwd1" class="form-control" id="pwdInput1">
 						</div>
 						<button class="btn btn-primary">Reset</button>
 					</form>
@@ -38,8 +38,8 @@
 
 <script>
 	function validate(){
-		var pwd = document.getElementById("password");
-		var pwd1 = document.getElementById("password1");
+		var pwd = document.getElementById("pwdInput").value;
+		var pwd1 = document.getElementById("pwdInput1").value;
 		if(pwd==="" || pwd1===""){
 			alert("Password is required!");
 			return false;

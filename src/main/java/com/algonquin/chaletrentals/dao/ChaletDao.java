@@ -10,21 +10,21 @@ import com.algonquin.chaletrentals.services.CrudService;
 public class ChaletDao implements CrudService<Chalet, UUID> {
 	
 	@Override
-	public void create() {
+	public boolean create(Chalet chalet) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void update(Chalet chalet) {
+	public boolean update(Chalet chalet) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void delete(UUID chaletID) {
+	public boolean delete(UUID chaletID) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override

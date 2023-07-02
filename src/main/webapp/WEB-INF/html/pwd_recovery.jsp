@@ -25,7 +25,7 @@
 						<li>Our system will send you an code to your email</li>
 						<li>Enter the code on the next page</li>
 					</ol>
-					<form class="form" method="post">
+					<form class="form" action="/reset-password" method="post">
 						<div class="mb-3">
 							<label for="emailInput" class="form-label">Enter your mail address</label> 
 							<input type="email" name="email" class="form-control" id="emailInput">

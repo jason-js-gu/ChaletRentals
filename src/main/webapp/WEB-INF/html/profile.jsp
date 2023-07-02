@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chalet Rentals | Register</title>
+<title>Chalet Rentals | Profile</title>
 <%@ include file="head.jsp"%>
 </head>
 <body>
@@ -14,6 +14,7 @@
 		<div class="cr01 section-main">
 			<div class="container">
 				<%@ include file="nav.jsp"%>
+				<%@ include file="message.jsp"%>
 				<div class="row pt-5">
 					
 				<div class="col-12 col-sm-12 col-md-4 col-lg-4">
@@ -26,7 +27,7 @@
 					<c:set var="update_profile" value="${param['update_profile']}" />
 					
 					<c:if test="${!update_profile}">
-					<c:set var="user" value="${session.getAttribute('user')}" />	
+					<c:set var="user" value="${sessionScope.user}" />	
 					<div class="shadow m-auto p-3 bg-body-tertiary">
 						<div class="mb-3">
 							<label for="usernameInput" class="form-label">Username: 
@@ -44,26 +45,26 @@
 								<c:out value="${user.email}" />							
 							</label>
 						</div>
-						<c:if test="${user.isChaletOwner}">
+						<c:if test="${user.isChaletOwner()}">
 						<div class="mb-3">
 							<label class="form-label" for="chx"> Status: Chalet Owner </label>
 						</div>
-						<div class="mb-3 mt-2 d-none" id="div_tel">
+						<div class="mb-3 mt-2" id="div_tel">
 							<label for="telephone" class="form-label">Telephone: 
 								<c:out value="${user.telephone}" />								
 							</label>
 						</div>
 						</c:if>
-						<c:if test="${!user.isChaletOwner}">
+						<c:if test="${!user.isChaletOwner()}">
 						<div class="mb-3">
 							<label class="form-label" for="chx"> Status: Tourist </label>
 						</div>
 						</c:if>						
-						<a href="/profile?update_profile=true"><button class="btn btn-primary mt-3">Update My Profile</button></a>
+						<a href="/register"><button class="btn btn-primary mt-3">Update My Profile</button></a>
 					</div>
 					</c:if>
 				
-				
+<%-- 				
 					<c:if test="${update_profile}">	
 					<form action="profile" method="post" class="shadow m-auto p-3 bg-body-tertiary">
 						<input type="hidden" name="userid" class="form-control" value="${user.userID}">
@@ -80,7 +81,7 @@
 							<input type="email" name="email" value="${user.email}" class="form-control" id="emailInput"
 								placeholder="name@example.com">
 						</div>
-						<c:if test="${user.isChaletOwner}">
+						<c:if test="${user.isChaletOwner()}">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="isowner" checked id="chx">
 							<label class="form-check-label" for="chx"> Chalet Owner </label>
@@ -90,7 +91,7 @@
 							<input type="text" name="telephone" value="${user.telephone}" id="telephone" class="form-control">
 						</div>
 						</c:if>
-						<c:if test="${!user.isChaletOwner}">
+						<c:if test="${!user.isChaletOwner()}">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="isowner" id="chx">
 							<label class="form-check-label" for="chx"> Chalet Owner </label>
@@ -103,7 +104,7 @@
 						
 						<button class="btn btn-primary mt-3">Submit</button>
 					</form>
-					</c:if>
+					</c:if> --%>
 				</div>
 				</div>
 			</div>

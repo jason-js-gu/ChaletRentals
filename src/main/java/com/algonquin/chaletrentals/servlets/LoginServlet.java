@@ -16,20 +16,25 @@ import com.algonquin.chaletrentals.beans.User;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	UserDao userDao = new UserDao();
+	private UserDao userDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public LoginServlet() {
-        super();
+        userDao = new UserDao();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/html/login.jsp").forward(request, response);
+		User user = (User)request.getSession().getAttribute("user");
+    	if(user == null) {
+    		request.getRequestDispatcher("WEB-INF/html/login.jsp").forward(request, response);   		
+    	}else{
+    		response.sendRedirect("/home"); 
+    	}		
 	}
 
 	/**
@@ -37,14 +42,16 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = null;		
-		String email = request.getParameter("username");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		user = userDao.select(email, password);
 		String message = null;
 		String status = "failed";
 		if(user == null) {
-			message = "Invalid username or password, please try again.";
-			response.sendRedirect("/login?message=" + message + "&status=" + status);
+			message = "Invalid email or password, please try again.";
+			request.setAttribute("message", message);
+			request.setAttribute("status", status);
+			response.sendRedirect("/login");
 		}else {
 			request.getSession().setAttribute("user", user);
 			response.sendRedirect("/home");

@@ -21,21 +21,21 @@ public class ReservationDao implements CrudService<Reservation, UUID> {
 	}
 
 	@Override
-	public void create() {
+	public boolean create(Reservation res) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void update(Reservation reservation) {
+	public boolean update(Reservation reservation) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void delete(UUID reservationID) {
+	public boolean delete(UUID reservationID) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

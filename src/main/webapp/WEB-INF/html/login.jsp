@@ -16,14 +16,14 @@
 				<%@ include file="nav.jsp"%>
 				<%@ include file="message.jsp"%>
 				<div class="div-form">
-					<form class="shadow m-auto p-3 bg-body-tertiary rounded">
+					<form action="/login" method="post" class="shadow m-auto p-3 bg-body-tertiary rounded">
 						<div class="mb-3">
 							<label for="usernameInput" class="form-label">Email</label> <input
-								type="email" class="form-control" id="usernameInput">
+								type="email" name="email" class="form-control" id="usernameInput">
 						</div>
 						<div class="mb-1">
 							<label for="pwdInput" class="form-label">Password</label> <input
-								type="password" class="form-control" id="pwdInput">
+								type="password" name="password" class="form-control" id="pwdInput">
 						</div>
 						<div class="mb-3 text-end">
 							<p><a href="/reset-password">Forgot your password?</a></p>

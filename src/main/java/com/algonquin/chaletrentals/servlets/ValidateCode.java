@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.algonquin.chaletrentals.beans.User;
+
 /**
  * Servlet implementation class ValidateCode
  */
@@ -22,6 +24,15 @@ public class ValidateCode extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	User user = (User)request.getSession().getAttribute("user");
+    	if(user == null) {
+    		response.sendRedirect("/login");
+    	}else {
+    		response.sendRedirect("/home");
+    	}
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +46,7 @@ public class ValidateCode extends HttpServlet {
 		}else {
 			request.setAttribute("message", "Invalid code, please check it again.");
 			request.setAttribute("status", "failed");
-			request.getRequestDispatcher("WEB-INF/html/enter_code.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/html/pwd_recovery_code.jsp").forward(request, response);
 		}
 	}
 }

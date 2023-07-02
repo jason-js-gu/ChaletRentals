@@ -21,7 +21,7 @@
 
 			<li class="nav-item"><a class="nav-link" href="/reservation">Reservation</a>
 			</li>
-			<c:set var="user" value="${request.getSession().getAttribute('user')}" />
+			<c:set var="user" value="${sessionScope.user}" />
 			<c:if test="${user!=null && user.email=='cst8288g10@gmail.com'}">
 				<li class="nav-item"><a class="nav-link" href="/users">Users</a>
 			</c:if>
@@ -31,7 +31,7 @@
 		</ul>
 		<div class="text-right">
 			<c:if test="${user != null}">		
-			<span class="text-deco">welcome, <c:out value="${user.username}" /></span>
+			<span class="text-deco">welcome, <span style="color:#00adb5"><c:out value="${user.username}" /></span></span>
 			&nbsp;|&nbsp;
 			<span class="text-deco"><a href="/logout">logout</a></span>
 			</c:if>

@@ -14,16 +14,27 @@ public class User {
 		this.userID = null;
 		this.username = null;
 		this.password = null;
-		this.email = null;
+		this.email = null;		
 		this.telephone = null;
 	}
 	
 	public User(String username, 
-			String password, String email, String telephone) {		
+			String password, String email, boolean chaletOwner, String telephone) {		
 		this.userID = UUID.randomUUID();
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.isChaletOwner = chaletOwner;
+		this.telephone = telephone;
+	}
+	
+	public User(UUID userID, String username, 
+			String password, String email, boolean chaletOwner, String telephone) {		
+		this.userID = userID;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.isChaletOwner = chaletOwner;
 		this.telephone = telephone;
 	}
 

@@ -2,35 +2,43 @@ package com.algonquin.chaletrentals.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.algonquin.chaletrentals.dao.UserDao;
+import com.algonquin.chaletrentals.beans.User;
 /**
  * Servlet implementation class NewPassword
  */
 @WebServlet("/new-password")
 public class NewPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    UserDao userDao = new UserDao();   
+    private UserDao userDao;   
     /**
      * @see HttpServlet#HttpServlet()
      */
     public NewPassword() {
-        super();
-        // TODO Auto-generated constructor stub
+        userDao = new UserDao();
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	User user = (User)request.getSession().getAttribute("user");
+    	if(user == null) {
+    		response.sendRedirect("/login");
+    	}else {
+    		response.sendRedirect("/home");
+    	}
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pwd = request.getParameter("password");		
-		String email = request.getParameter("email");
+		String pwd = request.getParameter("pwd");		
+		String email = (String)request.getSession().getAttribute("email");
+		System.out.println("session-email:"+email);
 		try {
 			userDao.update(email, pwd);
 		} catch (SQLException e) {			

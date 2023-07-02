@@ -26,12 +26,12 @@ import com.algonquin.chaletrentals.dao.UserDao;
 @WebServlet("/reset-password")
 public class PwdRecoveryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    UserDao userDao = new UserDao();   
+    private UserDao userDao;   
     /**
      * @see HttpServlet#HttpServlet()
      */
     public PwdRecoveryServlet() {
-        super();
+    	userDao = new UserDao(); 
         // TODO Auto-generated constructor stub
     }
 
@@ -39,8 +39,12 @@ public class PwdRecoveryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("WEB-INF/html/pwd_recovery.jsp").forward(request, response);
+    	User user = (User)request.getSession().getAttribute("user");
+    	if(user != null) {
+    		response.sendRedirect("/home");
+    	}else {
+    		request.getRequestDispatcher("WEB-INF/html/pwd_recovery.jsp").forward(request, response);
+    	}
 	}
 
 	/**
@@ -59,7 +63,9 @@ public class PwdRecoveryServlet extends HttpServlet {
 
 		if(email == null || user == null) {
 			message = "Invalid email, please try again.";
-			response.sendRedirect("/reset-password?message=" + message + "&status=" + status);
+			request.setAttribute("message", message);
+			request.setAttribute("status", status);
+			response.sendRedirect("/reset-password");
 		}else {	
 			//send code
 			Random rand = new Random();
@@ -88,7 +94,7 @@ public class PwdRecoveryServlet extends HttpServlet {
 			}
 			httpSession.setAttribute("originalCode", code);
 			httpSession.setAttribute("email", email);
-			request.getRequestDispatcher("WEB-INF/html/enter_code.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/html/pwd_recovery_code.jsp").forward(request, response);
 		}
 	}
 }
