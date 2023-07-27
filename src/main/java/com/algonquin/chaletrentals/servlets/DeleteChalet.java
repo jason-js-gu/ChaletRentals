@@ -1,23 +1,25 @@
 package com.algonquin.chaletrentals.servlets;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.algonquin.chaletrentals.dao.ChaletDao;
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class DeleteChalet
  */
-@WebServlet("/logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/DeleteChalet")
+public class DeleteChalet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    ChaletDao chaletDao = new ChaletDao();   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public DeleteChalet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,18 +28,12 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().removeAttribute("user");
-		request.getSession().invalidate();
-		//request.getRequestDispatcher("WEB-INF/logout.jsp").forward(request, response);
-		response.sendRedirect("/");
+		UUID chaletID = UUID.fromString(request.getParameter("chaletID")) ;
+		if(chaletID != null) {
+			boolean res = chaletDao.delete(chaletID);
+			if(res) {
+				response.sendRedirect("/");				
+			}
+		}		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

@@ -30,7 +30,7 @@ public class ValidateCode extends HttpServlet {
     	if(user == null) {
     		response.sendRedirect("/login");
     	}else {
-    		response.sendRedirect("/home");
+    		response.sendRedirect("/");
     	}
     }
 

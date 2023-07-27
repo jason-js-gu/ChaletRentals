@@ -40,7 +40,7 @@ public class UsersServlet extends HttpServlet {
 			request.setAttribute("users", users);
 			request.getRequestDispatcher("WEB-INF/html/users.jsp").forward(request, response);
     	}else {
-    		response.sendRedirect("/home");
+    		response.sendRedirect("/");
     	}
 	}
 

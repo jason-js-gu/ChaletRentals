@@ -1,6 +1,11 @@
 package com.algonquin.chaletrentals.servlets;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.UUID;
+
+import com.algonquin.chaletrentals.beans.Reservation;
+import com.algonquin.chaletrentals.dao.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class DeleteReservation
  */
-@WebServlet("/logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/delete_reservation")
+public class DeleteReservation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    ReservationDao reservationDao = new ReservationDao();   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public DeleteReservation() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,10 +31,19 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().removeAttribute("user");
-		request.getSession().invalidate();
-		//request.getRequestDispatcher("WEB-INF/logout.jsp").forward(request, response);
-		response.sendRedirect("/");
+		UUID rid = UUID.fromString(request.getParameter("id"));
+		boolean res = reservationDao.delete(rid);
+		String message = "";
+		String status = "failed";
+		if(res) {
+			message = "Your reservation has been cancled.";
+			status = "success";			
+		}else {
+			message = "Something went wrong, please try again.";
+		}
+		request.setAttribute("message", message);
+		request.setAttribute("status", status);
+		response.sendRedirect("/reservation");
 	}
 
 	/**

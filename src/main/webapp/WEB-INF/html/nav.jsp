@@ -3,7 +3,7 @@
 
 <nav class="navbar p-3 navbar-expand-lg bg-body-tertiary">
 
-	<a class="navbar-brand text-font" href="/home"> <img
+	<a class="navbar-brand text-font" href="/"> <img
 		src="${pageContext.request.contextPath}/img/logo.png" alt="Logo"
 		width="24" height="24" class="d-inline-block img-position">
 		Chalet Rentals
@@ -17,9 +17,8 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="/home">Home</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="/reservation">Reservation</a>
+				aria-current="page" href="/">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="/reservation">My Reservation</a>
 			</li>
 			<c:set var="user" value="${sessionScope.user}" />
 			<c:if test="${user!=null && user.email=='cst8288g10@gmail.com'}">
@@ -27,6 +26,9 @@
 			</c:if>
 			<c:if test="${user!=null}">
 				<li class="nav-item"><a class="nav-link" href="/profile">My Profile</a>
+			</c:if>
+			<c:if test="${user!=null && user.isChaletOwner()}">
+				<li class="nav-item"><a class="nav-link" href="/add_chalet">Add Chalet</a>
 			</c:if>
 		</ul>
 		<div class="text-right">
